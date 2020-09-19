@@ -2,8 +2,8 @@
 
 # > system configuration script
 
-# version:       1.0.0
-# last modified: 07/05/2020
+# version:       1.1.0
+# last modified: 19/09/2020
 
 # -------------------------------------------------------------------------------------------------------
 
@@ -17,7 +17,7 @@ fi
 # -------------------------------------------------------------------------------------------------------
 
 # > information
-echo -e  "\n\e[104mSystem setup script [v1.0.0]\e[49m\n"
+echo -e  "\n\e[104mSystem setup script [v1.1.0]\e[49m\n"
 
 read -p "Configure the system and install essential packages? [Y/n] " -n 1 -r
 echo
@@ -26,6 +26,8 @@ if [[ $REPLY =~ ^[Nn]$ ]]; then exit; fi
 # -------------------------------------------------------------------------------------------------------
 
 # > packages
+
+echo -e  "\n\e[104mPackage and system configuration\e[49m\n"
 
 pkg_list=( 
 	build-essential
@@ -66,6 +68,8 @@ timedatectl set-local-rtc 1 --adjust-system-clock
 # -------------------------------------------------------------------------------------------------------
 
 # > GNOME configuration (GNOME)
+
+echo -e  "\n\e[104mSystem customization\e[49m\n"
 
 # https://askubuntu.com/questions/971067/how-can-i-script-the-settings-made-by-gnome-tweak-tool
 
@@ -109,10 +113,11 @@ gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'no
 
 # > GitHub & SSH
 
+echo -e  "\n\e[104mGitHub configuration\e[49m\n"
+
 # https://help.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
 # https://help.github.com/en/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account
 # https://stackoverflow.com/questions/1885525/how-do-i-prompt-a-user-for-confirmation-in-bash-script
-
 
 email="martinandrovich@gmail.com."
 name="Martin Androvich"
