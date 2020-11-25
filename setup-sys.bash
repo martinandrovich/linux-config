@@ -2,8 +2,8 @@
 
 # > system configuration script
 
-# version:       1.1.0
-# last modified: 19/09/2020
+# version:       1.1.1
+# last modified: 25/11/2020
 
 # -------------------------------------------------------------------------------------------------------
 
@@ -17,7 +17,7 @@ fi
 # -------------------------------------------------------------------------------------------------------
 
 # > information
-echo -e  "\n\e[104mSystem setup script [v1.1.0]\e[49m\n"
+echo -e  "\n\e[104mSystem setup script [v1.1.1]\e[49m\n"
 
 read -p "Configure the system and install essential packages? [Y/n] " -n 1 -r
 echo
@@ -38,10 +38,11 @@ pkg_list=(
 	htop
 	cpufrequtils
 	xclip
-  curl
-  software-properties-common
-  apt-transport-https
-  wget
+  	curl
+  	software-properties-common
+  	apt-transport-https
+  	wget
+	sed
 )
 
 echo -e "\nInstalling packages...\n"
@@ -61,9 +62,6 @@ sudo apt install code
 echo -e "\nUpdating system...\n"
 sudo apt update
 sudo apt upgrade -y
-
-# disable UTC and use local time (for time sync between windows and linux)
-timedatectl set-local-rtc 1 --adjust-system-clock
 
 # -------------------------------------------------------------------------------------------------------
 
@@ -108,6 +106,17 @@ gsettings set org.gnome.shell.extensions.dash-to-dock dock-position BOTTOM
 gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout 3600
 gsettings set org.gnome.settings-daemon.plugins.power power-button-action 'suspend'
 gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'nothing'
+
+# -------------------------------------------------------------------------------------------------------
+
+# > Fixes
+
+# disable jack stick buzzing issue
+# https://askubuntu.com/questions/1241617/ubuntu-20-04-after-last-update-speakers-are-buzzing-unless-i-open-the-sound-s
+echo -e "\n# stop fucking buzzing\noptions snd-hda-intel power_save=0 power_save_controller=N" | sudo tee -a /home/androvich# gedit /etc/modprobe.d/alsa-base.conf
+
+# disable UTC and use local time (for time sync between windows and linux)
+timedatectl set-local-rtc 1 --adjust-system-clock
 
 # -------------------------------------------------------------------------------------------------------
 
