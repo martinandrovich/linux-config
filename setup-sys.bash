@@ -2,8 +2,8 @@
 
 # > system configuration script
 
-# version:       1.1.1
-# last modified: 25/11/2020
+# version:       1.2.0
+# last modified: 20/02/2021
 
 # -------------------------------------------------------------------------------------------------------
 
@@ -51,7 +51,12 @@ sudo apt install -y "${pkg_list[@]}"
 
 # etc.
 
+# bash history giu (hstr)
+# https://github.com/dvorka/hstr
+sudo add-apt-repository ppa:ultradvorka/ppa && sudo apt-get update && sudo apt-get install hstr && hstr --show-configuration >> ~/.bashrc && . ~/.bashrc
+
 # visual studio code
+echo -e "\nInstalling visual code...\n"
 #sudo snap install code --classic
 wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
 sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
@@ -109,7 +114,7 @@ gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'no
 
 # -------------------------------------------------------------------------------------------------------
 
-# > Fixes
+# > fixes
 
 # disable jack stick buzzing issue
 # https://askubuntu.com/questions/1241617/ubuntu-20-04-after-last-update-speakers-are-buzzing-unless-i-open-the-sound-s
