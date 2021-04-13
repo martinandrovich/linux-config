@@ -133,7 +133,7 @@ echo -e  "\n\e[104mGitHub configuration\e[49m\n"
 # https://help.github.com/en/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account
 # https://stackoverflow.com/questions/1885525/how-do-i-prompt-a-user-for-confirmation-in-bash-script
 
-email="martinandrovich@gmail.com."
+email="martinandrovich@gmail.com"
 name="Martin Androvich"
 
 echo -e "\nConfiguring git user credentials...\n"
